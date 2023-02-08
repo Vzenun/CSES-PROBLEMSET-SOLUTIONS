@@ -1,0 +1,1 @@
+{"name":"Local: Missing_Number","url":"/Users/vidurgoel/CSES_Problemset/Missing_Number.cpp","tests":[{"id":1675859555104,"input":"2\n2","output":"1"},{"id":1675859612447,"input":"5\n1 3 2 5","output":"4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Missing_Number.cpp","group":"local","local":true}
