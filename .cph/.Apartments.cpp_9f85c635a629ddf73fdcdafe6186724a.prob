@@ -1,0 +1,1 @@
+{"name":"Local: Apartments","url":"/Users/vidurgoel/CSES_Problemset/Apartments.cpp","tests":[{"id":1676265583904,"input":"4 3 5\n60 45 80 60\n30 60 75","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Apartments.cpp","group":"local","local":true}

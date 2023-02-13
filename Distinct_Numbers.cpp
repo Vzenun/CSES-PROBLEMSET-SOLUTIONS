@@ -167,13 +167,22 @@ void solve_array(){
     cin>>n;
     ll * arr=new ll[n];
     read_array(arr,n);
+    sort(arr,arr+n);
+    ll num=0;
+    for(ll i=0;i<n-1;i++){
+        if(arr[i]!=arr[i+1]){
+            num++;
+        }
+    }
+    num++;
+    cout<<num<<nn;
 }
 
 int main(){
     make_it_fast();
     //seive();
-    solve_mul();
-    //solve_array();
+    //solve_mul();
+    solve_array();
     //solve_single();
     return 0;
 }

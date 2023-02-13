@@ -87,6 +87,19 @@ ll add_mod(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a + b) % m) + m) %
 ll mul_mod(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a * b) % m) + m) % m;}
 ll sub_mod(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
 
+ll calc_num_zero_in_fact(ll n){
+    if(n<=4){
+        return 0;
+    }
+    else{
+        ll num=0;
+        for(ll i=1;i<=(ll)floor(log2(n)/log2(5));i++){
+            num+=(ll)floor((double)n/pow(5,i));
+        }
+        return num;
+    }
+}
+
 /*
     sqrt() in built function to give the square root in float/double
     cbrt() in built function to give the cube root in float/double
@@ -137,7 +150,9 @@ by default the sets are sorted in the ascending order
     sort(v.begin(),v.end(),mycompare);
 */
 
-bool mycompare(pair<ll,ll> p1 ,pair<ll,ll> p2){
+
+
+bool mycompare(pair<int, int> p1 ,pair<int, int> p2){
     if(p1.first<p2.first){
         return true;
     }
@@ -160,6 +175,7 @@ void solve_mul(){
 void solve_single(){
     ll n;
     cin>>n;
+    cout<<calc_num_zero_in_fact(n)<<nn;
 }
 
 void solve_array(){
@@ -172,8 +188,8 @@ void solve_array(){
 int main(){
     make_it_fast();
     //seive();
-    solve_mul();
+    //solve_mul();
     //solve_array();
-    //solve_single();
+    solve_single();
     return 0;
 }

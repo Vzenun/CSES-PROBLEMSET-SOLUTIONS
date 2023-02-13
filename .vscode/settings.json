@@ -32,5 +32,9 @@
     "**/.*/**",
     "**/.vscode",
     "**/.vscode/**"
-  ]
+  ],
+  "files.associations": {
+    "*.ejs": "html",
+    "iostream": "cpp"
+  }
 }

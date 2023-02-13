@@ -137,7 +137,7 @@ by default the sets are sorted in the ascending order
     sort(v.begin(),v.end(),mycompare);
 */
 
-bool mycompare(pair<ll,ll> p1 ,pair<ll,ll> p2){
+bool mycompare(pair<int, int> p1 ,pair<int, int> p2){
     if(p1.first<p2.first){
         return true;
     }
@@ -160,6 +160,7 @@ void solve_mul(){
 void solve_single(){
     ll n;
     cin>>n;
+    cout<<expo_mod(2,n,MOD)<<nn;
 }
 
 void solve_array(){
@@ -172,8 +173,8 @@ void solve_array(){
 int main(){
     make_it_fast();
     //seive();
-    solve_mul();
+    //solve_mul();
     //solve_array();
-    //solve_single();
+    solve_single();
     return 0;
 }

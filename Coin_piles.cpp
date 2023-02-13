@@ -153,13 +153,54 @@ void solve_mul(){
     ll test;
     cin>>test;
     for(ll i=0;i<test;i++){
-        
+        solve_single();
     }
 }
 
 void solve_single(){
-    ll n;
-    cin>>n;
+    ll a,b;
+    cin>>a>>b;
+    if(a==b && a%3==0){
+        cout<<yup<<nn;
+    }
+    else if(a==b && a%3!=0){
+        cout<<nope<<nn;
+    }
+    else{
+        if(a>b){
+            if(2*b==a){
+                cout<<yup<<nn;
+            }
+            else if(2*b<a){
+                cout<<nope<<nn;
+            }
+            else{
+                if((2*b-a)%3==0){
+                    cout<<yup<<nn;
+                }
+                else{
+                    cout<<nope<<nn;
+                }
+            }
+        }
+        else{
+            swap(a,b);
+            if(2*b==a){
+                cout<<yup<<nn;
+            }
+            else if(2*b<a){
+                cout<<nope<<nn;
+            }
+            else{
+                if((2*b-a)%3==0){
+                    cout<<yup<<nn;
+                }
+                else{
+                    cout<<nope<<nn;
+                }
+            }
+        }
+    }
 }
 
 void solve_array(){

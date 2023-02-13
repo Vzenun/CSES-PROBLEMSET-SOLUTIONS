@@ -137,7 +137,7 @@ by default the sets are sorted in the ascending order
     sort(v.begin(),v.end(),mycompare);
 */
 
-bool mycompare(pair<ll,ll> p1 ,pair<ll,ll> p2){
+bool mycompare(pair<int, int> p1 ,pair<int, int> p2){
     if(p1.first<p2.first){
         return true;
     }
@@ -160,6 +160,75 @@ void solve_mul(){
 void solve_single(){
     ll n;
     cin>>n;
+    if(n%2==0){
+        ll k=n/2;
+        if(k*(n+1)%2==0){
+            cout<<yup<<nn;
+            vec a;
+            vec b;
+            ll flag=0;
+            for(ll i=1;i<=k;i++){
+                if(flag%2==0){
+                    a.pb(i);
+                    a.pb(n+1-i);
+                    flag=1;
+                }
+                else{
+                    b.pb(i);
+                    b.pb(n+1-i);
+                    flag=0;
+                }
+            }
+            cout<<a.size()<<nn;
+            for(ll i=0;i<a.size();i++){
+                cout<<a[i]<<" ";
+            }
+            cout<<nn;
+            cout<<b.size()<<nn;
+            for(ll i=0;i<b.size();i++){
+                cout<<b[i]<<" ";
+            }
+        }
+        else{
+            cout<<nope<<nn;
+        }
+    }
+    else{
+        ll k=n/2;
+        if(((n*(n+1))/2)%2==0){
+            cout<<yup<<nn;
+            vec a;
+            vec b;
+            a.pb(1);
+            a.pb(2);
+            b.pb(3);
+            ll flag=0;
+            for(ll i=4;i<=3+(n-3)/2;i++){
+                if(flag%2==0){
+                    a.pb(i);
+                    a.pb(n-(i-4));
+                    flag=1;
+                }
+                else{
+                    b.pb(i);
+                    b.pb(n-(i-4));
+                    flag=0;
+                }
+            }
+            cout<<a.size()<<nn;
+            for(ll i=0;i<a.size();i++){
+                cout<<a[i]<<" ";
+            }
+            cout<<nn;
+            cout<<b.size()<<nn;
+            for(ll i=0;i<b.size();i++){
+                cout<<b[i]<<" ";
+            }
+        }
+        else{
+            cout<<nope<<nn;
+        }
+    }
 }
 
 void solve_array(){
@@ -172,8 +241,8 @@ void solve_array(){
 int main(){
     make_it_fast();
     //seive();
-    solve_mul();
+    //solve_mul();
     //solve_array();
-    //solve_single();
+    solve_single();
     return 0;
 }
