@@ -1,0 +1,1 @@
+{"name":"Local: Sum_of_Two_Values","url":"/Users/vidurgoel/CSES_Problemset/Sum_of_Two_Values.cpp","tests":[{"id":1679935397372,"input":"4 8\n2 7 5 1","output":"4 2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Sum_of_Two_Values.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: Restaurant_Customers","url":"/Users/vidurgoel/CSES_Problemset/Restaurant_Customers.cpp","tests":[{"id":1679927537491,"input":"3\n5 8\n2 4\n3 9","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Restaurant_Customers.cpp","group":"local","local":true}
