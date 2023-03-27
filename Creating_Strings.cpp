@@ -30,7 +30,6 @@
 #include<deque>
 #include<iterator>
 #include<sstream>
-#include<unordered_map>
 
 using namespace std;
 using namespace chrono;
@@ -42,47 +41,42 @@ void solve_mul();
 typedef long long int ll;
 typedef unsigned long long int ull;
 typedef long double lld;
-typedef vector<ll> vl;
 typedef pair<ll,ll> pll;
-typedef vector<pll> vpll;
-typedef vector<vl> vvl;
+typedef vector<pair<ll,ll> > vpll;
+typedef vector<vector<ll> > vvl;
 
 #define make_it_fast() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 #define rept(i, a, n) for (ll i = (a); i < (n); i++)
 #define all(x) (x).begin(), (x).end()
 #define sor(x) sort(all(x))
-#define sorr(x) sort(x.rbegin(),x.rend()) // this is in order to do sorting in descending order
 #define lb lower_bound
 #define ub upper_bound
 #define pb push_back
 #define ppb pop_back
-#define ff first
-#define ss second
 #define mp make_pair
 #define MOD 1000000007
 #define MOD1 998244353
 #define PI 3.141592653589793238462
-#define mset multiset<ll> // it contains multiple instances of the same value in ascending order
-#define rep(i,a,b) for(ll i=a;i<b;i++)
-#define repd(i,a,b) for(ll i=b-1;i>=a;i--)
+#define vec vector<ll>
 #define nn endl
-#define setbits(n) __builtin_popcount(n)
 
 ll seiv[1000001]={0};
 
 string yup="YES";
 string nope="NO";
 
-ll lmin(vl arr){return *min_element(arr.begin(),arr.end());}
-ll lmax(vl arr){return *max_element(arr.begin(),arr.end());}
+ll minar(ll * arr,ll n){return *min_element(arr,arr+n);}
+ll maxar(ll * arr,ll n){return *max_element(arr,arr+n);}
 
 ll fibonacci(ll n){ll a=0;ll b=1;ll c;if(n==0 || n==1){return n;}for(ll i=2;i<n+1;i++){c=a+b;a=b;b=c;}return c;}
 
-ll sum(vl a){ll sum=0;rep(i,0,a.size()){sum+=a[i];}return sum;}
-void rev(vl &arr,ll n){rep(i,0,n){cin>>arr[i];}return;}
-void prv(vl arr){rep(i,0,arr.size()){cout<<arr[i]<<" ";}cout<<nn;return;}
+void copy_array(ll * &arr,ll * &brr,ll n){copy(arr,arr+n,brr);}
+void read_array(ll * &arr,ll n){for(ll i=0;i<n;i++){cin>>arr[i];}return;}
+void print_array(ll * &arr,ll n){for(ll i=0;i<n;i++){cout<<i<<" "<<arr[i]<<endl;}return;}
+//void print_array(ll arr[],ll n){for(ll i=0;i<n;i++){cout<<i<<" "<<arr[i]<<endl;}return;}
+void print_array(vec &arr,ll n){for(ll i=0;i<n;i++){cout<<i<<" "<<arr[i]<<endl;}return;}
 
-bool prime(ll n){rep(i,2,ceil(sqrt(n))){if(n%i==0){return false;}}return true;}
+bool prime(ll n){for(int i=2;i*i<=n;i++){if(n%i==0){return false;}}return true;}
 void seive(){seiv[0]=0;seiv[1]=1;for(ll i=2;i*i<1000001;i++){if(seiv[i]==0){seiv[i]=i;for(ll j=i*i;j<1000001;j=j+i){if(seiv[j]==0){seiv[j]=i;}}}}}
 
 ll gcd(ll a,ll b){if(b==0){return a;}if(a>=b){return gcd(b,a%b);}else{return gcd(b,a);}}
@@ -94,21 +88,25 @@ ll mul_mod(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a * b) % m) + m) %
 ll sub_mod(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) % m;}
 
 /*
-    A) double sqrt(double arg): It returns the square root of a number to type double. 
-    B) float sqrtf(float arg): It returns the square root of a number to type float.
-    C) long double sqrtl(long double arg): It returns the square root of a number to type long double with more precision. 
-    Advised to always use C) as always give correct one as other may halt in case of the big numbers
+    sqrt() in built function to give the square root in float/double
     cbrt() in built function to give the cube root in float/double
     abs() is used for the absolute value of a number
+    sort() inbuilt function in cpp
     swap() function in c++ used to swap value of two elements of the same data type.
     toupper() This function is used for converting a lowercase character to uppercase.
     tolower() This function is used for converting an uppercase character to lowercase.
     ceil() and floor() function
+    vector<ll> vect(arr, arr+n) used to make a vector containg same elements as that of the array arr
     sort(vect.begin(),vect.end(), greater<int>());
+    sort(arr,arr+n, greater<ll>()) sort in the decreasing order
     reverse(vect.begin(), vect.end());
+    reverse(arr,arr+n);
+    accumulate(first_iterator, last_iterator, initial value of sum) – Does the summation of vector elements eg: accumulate(arr,arr+n,0) will give summation of the array
     count(first_iterator, last_iterator,x) – To count the occurrences of x in vector.
     find(first_iterator, last_iterator, x) – Returns an iterator to the first occurrence of x in vector and points to last address of vector ((name_of_vector).end()) if element is not present in vector
-    
+    find(vect.begin(), vect.end(),5) != vect.end()?
+                        cout << "\nElement found":
+                    cout << "\nElement not found";
     maximium value long long can take 9, 223, 372, 036, 854, 775, 807
     2^63-1
     i.e, length of 19 only
@@ -116,24 +114,30 @@ ll sub_mod(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) %
     2^64-1
     i.e, length of 20 only
 
-    lower_bound(v.begin(), v.end(), 6) these are the syntax
-    upper_bound(v.begin(), v.end(), 6)
+    reverse(s.begin(), s.end()); to reverse the string.(in built function)
+    set<int, greater<int> > s1;
+    s1.insert(10);
+    set<int> a;
 
-    priority_queue<int, vector<int>, greater<int> > gquiz(arr, arr + n);
-    Here above is the syntax of the min_heap implementation with the help of the priority queue and here push() and pop() and top() are the main operations
-    priority_queue<int> gquiz(arr, arr + n);
-    Here above is the syntax of the max_heap implementation with the help of the priority queue and here push() and pop() and top() are the main operations
+by default the sets are sorted in the ascending order
 
-    Whenever need to do the hashing always use the map which is the stl template of hashing never use the array indexing method.
-    map.find() function has complexity 0(logn)
-    map.insert function has complexity 0(1)
-    __builtin_popcount(n) - we use this function to count the number of 1's (set bits) in the number in binary form
-    __builtin_parity(n) - this is boolean function which return true if number of 1's in binary form of n are odd else returns false;
-    __builtin_clz(n) - eg: Binary form of 16 is 00000000 00000000 00000000 00010000 therefore will return the number of the leading zeroes in n here answer will be 27
-    __builtin_ctz(n) - eg: Binary form of 20 is 00000000 00000000 00000000 00010100 therefore will return the number of the trailing zeroes in n here answer will be 2
+    this is how we are going to use the pair here
+    vector< pair<ll,ll> > v;
+    ll count=1;
+    for(ll i=0;i<n-1;i++){
+        if(arr[i]!=arr[i+1]){
+            v.push_back(make_pair(count,arr[i]));
+            count=1;
+        }
+        if(arr[i]==arr[i+1]){
+            count++;
+        }
+    }
+    v.pb(make_pair(count,arr[n-1]));
+    sort(v.begin(),v.end(),mycompare);
 */
 
-bool mycompare(pll p1 ,pll p2){
+bool mycompare(pair<ll,ll> p1 ,pair<ll,ll> p2){
     if(p1.first<p2.first){
         return true;
     }
@@ -145,70 +149,52 @@ bool mycompare(pll p1 ,pll p2){
     }
 }
 
+void permute(string s,ll n,string ans,set<string> &st){
+    if(n==0){
+        st.insert(ans);
+        //cout<<ans<<nn;
+    }
+    else{
+        //char k=s[0];
+        for(ll i=0;i<s.size();i++){
+            permute(s.substr(0,i)+s.substr(i+1),n-1,ans+s[i],st);
+        }
+    }
+}
+
 void solve_mul(){
     ll test;
     cin>>test;
-    rep(i,0,test){
+    for(ll i=0;i<test;i++){
         
     }
 }
 
 void solve_single(){
-    ll n;
-    cin>>n;
-}
-
-ll uppr_bd(vpll &arr,ll num){
-    ll i=-1;
-    ll j=arr.size();
-    ll m;
-    while(i+1<j){
-        m=(i+j)/2;
-        if(arr[m].ff<=num){
-            i=m;
-        }
-        else{
-            j=m;
-        }
-    }
-    if(i==-1 || arr[i].ss==0){
-        return -1;
-    }
-    else{
-        arr[i].ss-=1;
-        return arr[i].ff;
+    string s;
+    cin>>s;
+    set<string> st;
+    permute(s,s.size(),"",st);
+    cout<<st.size()<<nn;
+    set<string> :: iterator it=st.begin();
+    while(it!=st.end()){
+        cout<<*it<<nn;
+        it++;
     }
 }
 
 void solve_array(){
-    ll n,m;
-    cin>>n>>m;
-    vl arr(n,0);
-    rev(arr,n);
-    vl brr(m,0);
-    rev(brr,m);
-    multiset<ll,greater<ll> > ans;
-    rep(i,0,n){
-        ans.insert(arr[i]);
-    }
-    multiset<ll> :: iterator it;
-    rep(i,0,m){
-        it=ans.lower_bound(brr[i]);
-        if(it==ans.end()){
-            cout<<-1<<nn;
-        }
-        else{
-            cout<<*it<<nn;
-            ans.erase(ans.find(*it));
-        }
-    }
+    ll n;
+    cin>>n;
+    ll * arr=new ll[n];
+    read_array(arr,n);
 }
 
 int main(){
     make_it_fast();
     //seive();
     //solve_mul();
-    solve_array();
-    //solve_single();
+    //solve_array();
+    solve_single();
     return 0;
 }

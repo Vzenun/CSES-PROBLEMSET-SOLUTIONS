@@ -158,43 +158,89 @@ void solve_mul(){
 }
 
 void solve_single(){
-    ll n;
-    cin>>n;
+    //ll n;
+    //cin>>n;
+    string s;
+    cin>>s;
+    ll a[26]={0};
+    for(ll i=0;i<s.size();i++){
+        a[s[i]-'A']+=1;
+    }
+    ll num_odd=0;
+    char lt;
+    ll sim;
+    for(ll i=0;i<26;i++){
+        if(a[i]%2!=0){
+            num_odd++;
+            lt='A'+i;
+            sim=a[i];
+            a[i]=0;
+        }
+    }
+    if(num_odd==1 && s.size()%2!=0){
+        deque<char> d;
+        for(ll i=0;i<sim;i++){
+            d.push_front(lt);
+        }
+        ll flag=0;
+        for(ll i=0;i<26;i++){
+            while(a[i]!=0){
+                if(flag==0){
+                    d.push_front('A'+i);
+                    a[i]-=1;
+                    flag=1;
+                }
+                else{
+                    d.pb('A'+i);
+                    a[i]-=1;
+                    flag=0;
+                }
+            }
+        }
+        for(ll i=0;i<s.size();i++){
+            cout<<d[i];
+        }
+        cout<<nn;
+    }
+    else if(num_odd==0 && s.size()%2==0){
+        deque<char> d;
+        ll flag=0;
+        for(ll i=0;i<26;i++){
+            while(a[i]!=0){
+                if(flag==0){
+                    d.pb('A'+i);
+                    a[i]-=1;
+                    flag=1;
+                }
+                else{
+                    d.push_front('A'+i);
+                    a[i]-=1;
+                    flag=0;
+                }
+            }
+        }
+        for(ll i=0;i<s.size();i++){
+            cout<<d[i];
+        }
+        cout<<nn;
+    }
+    else{
+        cout<<"NO SOLUTION"<<nn;
+    }
 }
 
 void solve_array(){
-    ll n,m,k;
-    cin>>n>>m>>k;
+    ll n;
+    cin>>n;
     ll * arr=new ll[n];
-    ll * brr=new ll[m];
     read_array(arr,n);
-    read_array(brr,m);
-    ll i=0;
-    ll j=0;
-    ll count=0;
-    sort(arr,arr+n);
-    sort(brr,brr+m);
-    while(i<n && j<m){
-        if(arr[i]-k<=brr[j] && arr[i]+k>=brr[j]){
-            i++;
-            j++;
-            count++;
-        }
-        else if(arr[i]+k<brr[j]){
-            i++;
-        }
-        else if(arr[i]-k>brr[j]){
-            j++;
-        }
-    }
-    cout<<count<<nn;
 }
 
 int main(){
     make_it_fast();
     //seive();
     //solve_mul();
-    solve_array();
-    //solve_single();
+    //solve_array();
+    solve_single();
     return 0;
 }

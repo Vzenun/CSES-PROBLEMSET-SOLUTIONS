@@ -1,0 +1,1 @@
+{"name":"Local: Tower_of_Hanoi","url":"/Users/vidurgoel/CSES_Problemset/Tower_of_Hanoi.cpp","tests":[{"id":1676300379053,"input":"10","output":"1 3\n1 2\n3 2\n1 3\n2 1\n2 3\n1 3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Tower_of_Hanoi.cpp","group":"local","local":true}

@@ -2,17 +2,6 @@
 
 //Codeforcees Handle: Vidurcodviz
 
-/*
-888b    888  .d88888b. 88888888888        .d8888b.   .d88888b.  888b     d888 8888888b.  888      8888888888 88888888888 8888888888       Y88b   d88P 8888888888 88888888888 
-8888b   888 d88P" "Y88b    888           d88P  Y88b d88P" "Y88b 8888b   d8888 888   Y88b 888      888            888     888               Y88b d88P  888            888     
-88888b  888 888     888    888           888    888 888     888 88888b.d88888 888    888 888      888            888     888                Y88o88P   888            888     
-888Y88b 888 888     888    888           888        888     888 888Y88888P888 888   d88P 888      8888888        888     8888888             Y888P    8888888        888     
-888 Y88b888 888     888    888           888        888     888 888 Y888P 888 8888888P"  888      888            888     888                  888     888            888     
-888  Y88888 888     888    888           888    888 888     888 888  Y8P  888 888        888      888            888     888                  888     888            888     
-888   Y8888 Y88b. .d88P    888           Y88b  d88P Y88b. .d88P 888   "   888 888        888      888            888     888                  888     888            888     
-888    Y888  "Y88888P"     888            "Y8888P"   "Y88888P"  888       888 888        88888888 8888888888     888     8888888888           888     8888888888     888     
-*/
-
 #include<iostream>
 #include<string>
 #include<cmath>
@@ -148,6 +137,17 @@ by default the sets are sorted in the ascending order
     sort(v.begin(),v.end(),mycompare);
 */
 
+void tower_of_hanoi(ll n,ll usi,ll help,ll dest){
+    if(n==0){
+        return;
+    }
+    else{
+        tower_of_hanoi(n-1,usi,dest,help);
+        cout<<usi<<" "<<dest<<nn;
+        tower_of_hanoi(n-1,help,usi,dest);
+    }
+}
+
 bool mycompare(pair<ll,ll> p1 ,pair<ll,ll> p2){
     if(p1.first<p2.first){
         return true;
@@ -171,6 +171,12 @@ void solve_mul(){
 void solve_single(){
     ll n;
     cin>>n;
+    // string s="";
+    // for(ll i=n;i>=1;i--){
+    //     s=s+to_string(i);
+    // }
+    cout<<(ll)pow(2,n)-1<<nn;
+    tower_of_hanoi(n,1,2,3);
 }
 
 void solve_array(){
@@ -183,8 +189,8 @@ void solve_array(){
 int main(){
     make_it_fast();
     //seive();
-    solve_mul();
+    //solve_mul();
     //solve_array();
-    //solve_single();
+    solve_single();
     return 0;
 }
