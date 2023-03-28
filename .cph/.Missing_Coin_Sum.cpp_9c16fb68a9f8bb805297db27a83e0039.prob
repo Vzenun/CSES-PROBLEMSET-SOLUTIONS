@@ -1,0 +1,1 @@
+{"name":"Local: Missing_Coin_Sum","url":"/Users/vidurgoel/CSES_Problemset/Missing_Coin_Sum.cpp","tests":[{"id":1680011297068,"input":"5\n2 9 1 2 7","output":"6"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Missing_Coin_Sum.cpp","group":"local","local":true}

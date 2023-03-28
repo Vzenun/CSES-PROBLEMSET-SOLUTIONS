@@ -166,45 +166,23 @@ void solve_single(){
     cin>>n;
 }
 
-// Think geometrically. 
-//Assume that array elements are co-ordinates on x axis. 
-//The problem reduces to finding another co-ordinate such that the sum of distances 
-//between this choice and other co-ordinates is minimized. 
-// Observe that: If number of coordinates are odd then y = middle element. If even then 
-// y is any number in between middle 2 co-ordinates.
-// Say Input = [a, b, c, d]. Output is any number between b and c including both.
-// Therefore i will be choosing the median. 
-
-// Important 
-
 void solve_array(){
     ll n;
     cin>>n;
     vl arr(n,0);
     rev(arr,n);
-    sor(arr);
-    //ll sum1=sum(arr);
-    if(n%2==1){
-        ll low=arr[n/2];
-        ll ans=0;
-        rep(i,0,n){
-            ans+=abs(low-arr[i]);
-        }
-        cout<<ans<<nn;
+    vpll ans;
+    rep(i,0,n){
+        ans.pb(mp(arr[i],i));
     }
-    else{
-        ll high=arr[n/2];
-        ll low=arr[n/2-1];
-        ll ans=0;
-        rep(i,0,n){
-            ans+=abs(low-arr[i]);
+    sor(ans);
+    ll num=1;
+    rep(i,0,n-1){
+        if(ans[i].ss>ans[i+1].ss){
+            num++;
         }
-        ll ans2=0;
-        rep(i,0,n){
-            ans2+=abs(high-arr[i]);
-        }
-        cout<<min(ans,ans2)<<nn;
     }
+    cout<<num<<nn;
 }
 
 int main(){

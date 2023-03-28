@@ -166,44 +166,214 @@ void solve_single(){
     cin>>n;
 }
 
-// Think geometrically. 
-//Assume that array elements are co-ordinates on x axis. 
-//The problem reduces to finding another co-ordinate such that the sum of distances 
-//between this choice and other co-ordinates is minimized. 
-// Observe that: If number of coordinates are odd then y = middle element. If even then 
-// y is any number in between middle 2 co-ordinates.
-// Say Input = [a, b, c, d]. Output is any number between b and c including both.
-// Therefore i will be choosing the median. 
-
-// Important 
-
 void solve_array(){
-    ll n;
-    cin>>n;
+    ll n,m;
+    cin>>n>>m;
     vl arr(n,0);
     rev(arr,n);
-    sor(arr);
-    //ll sum1=sum(arr);
-    if(n%2==1){
-        ll low=arr[n/2];
-        ll ans=0;
-        rep(i,0,n){
-            ans+=abs(low-arr[i]);
-        }
-        cout<<ans<<nn;
+    vpll ans;
+    rep(i,0,n){
+        ans.pb(mp(arr[i],i));
     }
-    else{
-        ll high=arr[n/2];
-        ll low=arr[n/2-1];
-        ll ans=0;
-        rep(i,0,n){
-            ans+=abs(low-arr[i]);
+    sor(ans);
+    ll res=1;
+    rep(i,0,n-1){
+        if(ans[i].ss>ans[i+1].ss){
+            res++;
         }
-        ll ans2=0;
-        rep(i,0,n){
-            ans2+=abs(high-arr[i]);
+    }
+    ll m1,m2;
+    rep(j,0,m){
+        cin>>m1>>m2;
+        ll mr=arr[m1-1];
+        ll kr=arr[m2-1];
+        swap(arr[m1-1],arr[m2-1]);
+        if(mr==kr){
+            cout<<res<<nn;
+            continue;
         }
-        cout<<min(ans,ans2)<<nn;
+        else if(mr>kr){
+            swap(mr,kr);
+        }
+        if(mr<kr){
+            if(mr==1 && kr==n){
+                if(mr+1!=kr){
+                    ll num=1;
+                    rep(i,mr-1,mr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    rep(i,kr-2,kr-1){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res-=num;
+                    num=1;
+                    swap(ans[mr-1].ss,ans[kr-1].ss);
+                    rep(i,mr-1,mr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    rep(i,kr-2,kr-1){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res+=num;
+                }
+                else{
+                    if(res==1){
+                        res+=2;
+                    }
+                    else{
+                        res=1;
+                    }
+                }
+            }
+            else if(mr==1){
+                if(mr+1!=kr){
+                    ll num=1;
+                    rep(i,mr-1,mr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    rep(i,kr-2,kr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res-=num;
+                    num=1;
+                    //cout<<"*"<<nn;
+                    swap(ans[mr-1].ss,ans[kr-1].ss);
+                    rep(i,mr-1,mr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    rep(i,kr-2,kr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res+=num;
+                }
+                else{
+                    ll num=1;
+                    rep(i,mr-1,mr+1){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res-=num;
+                    num=1;
+                    swap(ans[mr-1].ss,ans[kr-1].ss);
+                    rep(i,mr-1,mr+1){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res+=num;
+                }
+            }
+            else if(kr==n){
+                if(mr+1!=kr){
+                    ll num=1;
+                    rep(i,mr-2,mr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    rep(i,kr-2,kr-1){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res-=num;
+                    num=1;
+                    swap(ans[mr-1].ss,ans[kr-1].ss);
+                    rep(i,mr-2,mr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    rep(i,kr-2,kr-1){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res+=num;
+                }
+                else{
+                    ll num=1;
+                    rep(i,kr-3,kr-1){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res-=num;
+                    num=1;
+                    swap(ans[mr-1].ss,ans[kr-1].ss);
+                    rep(i,kr-3,kr-1){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res+=num;
+                }
+            }
+            else{
+                if(mr+1!=kr){
+                    ll num=1;
+                    rep(i,mr-2,mr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    rep(i,kr-2,kr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res-=num;
+                    num=1;
+                    swap(ans[mr-1].ss,ans[kr-1].ss);
+                    rep(i,mr-2,mr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    rep(i,kr-2,kr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res+=num;
+                }
+                else{
+                    ll num=1;
+                    rep(i,kr-3,kr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res-=num;
+                    num=1;
+                    swap(ans[mr-1].ss,ans[kr-1].ss);
+                    rep(i,kr-3,kr){
+                        if(ans[i].ss>ans[i+1].ss){
+                            num++;
+                        }
+                    }
+                    res+=num;
+                }
+            }
+        }
+        cout<<res<<nn;
     }
 }
 
