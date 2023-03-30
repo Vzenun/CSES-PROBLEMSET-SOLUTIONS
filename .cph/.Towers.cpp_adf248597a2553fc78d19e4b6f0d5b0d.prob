@@ -1,0 +1,1 @@
+{"name":"Local: Towers","url":"/Users/vidurgoel/CSES_Problemset/Towers.cpp","tests":[{"id":1680063755866,"input":"10\n10 4 5 9 4 10 2 7 4 6","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Towers.cpp","group":"local","local":true}

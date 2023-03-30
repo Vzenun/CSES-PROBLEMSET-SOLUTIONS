@@ -1,0 +1,1 @@
+{"name":"Local: Playlist","url":"/Users/vidurgoel/CSES_Problemset/Playlist.cpp","tests":[{"id":1680019833135,"input":"8\n1 2 1 3 2 7 4 2","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Playlist.cpp","group":"local","local":true}
