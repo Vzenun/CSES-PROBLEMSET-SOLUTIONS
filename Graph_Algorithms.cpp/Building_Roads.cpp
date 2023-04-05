@@ -260,7 +260,9 @@ bool mycompare(pll p1 ,pll p2){
     else if(p1.first==p2.first){return p1.second<p2.second;}
     else{return false;}
 }
-
+vector<bool> visited;
+vvl connected_component;
+vvl arr;
 void solve_mul(){
     ll test;
     cin>>test;
@@ -269,37 +271,58 @@ void solve_mul(){
     }
 }
 
-void solve_single(){
-    ll n;
-    cin>>n;
-}
 
-void solve_array(){
-    ll n;
-    cin>>n;
-    vl arr(n,0);
-    rev(arr,n);
+void dfs(ll n){
+    vl ans;
+    stack<ll> st;
+    st.push(n);
+    ll s;
+    while(!st.empty()){
+        s=st.top();
+        st.pop();
+        ans.pb(s);
+        if(!visited[s-1]){
+            visited[s-1]=true;
+        }
+        rep(i,0,arr[s-1].size()){
+            if(!visited[arr[s-1][i]-1]){
+                st.push(arr[s-1][i]);
+                visited[arr[s-1][i]-1]=true;
+            }
+        }
+    }
+    connected_component.pb(ans);
 }
 
 void solve_graph(){
     ll n,m;
     cin>>n>>m;
     vl a;
-    vvl arr(n,a);
+    arr.resize(n,a);
     rep(i,0,m){
         ll x,y;
         cin>>x>>y;
         arr[x-1].pb(y);
         arr[y-1].pb(x);
     }
+    visited.resize(n,false);
+    rep(i,0,n){
+        if(!visited[i]){
+            dfs(i+1);
+        }
+    }
+    cout<<connected_component.size()-1<<nn;
+    rep(i,0,connected_component.size()-1){
+        cout<<connected_component[i][0]<<" "<<connected_component[i+1][0]<<nn;
+    }
 }
 
 signed main(){
     make_it_fast();
     //seive();
-    solve_mul();
+    //solve_mul();
     //solve_array();
     //solve_single();
-    //solve_graph();
+    solve_graph();
     return 0;
 }

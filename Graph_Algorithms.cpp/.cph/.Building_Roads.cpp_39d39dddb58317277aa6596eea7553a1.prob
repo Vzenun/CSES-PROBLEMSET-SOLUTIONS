@@ -1,0 +1,1 @@
+{"name":"Local: Building_Roads","url":"/Users/vidurgoel/CSES_Problemset/Graph_Algorithms.cpp/Building_Roads.cpp","tests":[{"id":1680414912487,"input":"4 2\n1 2\n3 4","output":"1\n1 3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Graph_Algorithms.cpp/Building_Roads.cpp","group":"local","local":true}
