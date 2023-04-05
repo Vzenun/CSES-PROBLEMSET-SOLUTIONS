@@ -209,21 +209,6 @@ ll sub_mod(ll a, ll b, ll m) {a = a % m; b = b % m; return (((a - b) % m) + m) %
     Modulo operations, although we see them as O(1), are a lot slower than simpler operations like addition, subtraction or bitwise operations. So it would be better to avoid those.
 
     Always in the question related to the graph always access from the global variables
-
-    The multiset gquiz1 is : <greater<int> wala
-    60 50 50 40 30 20 10 
-
-    The multiset gquiz2 : simple wala
-    30 40 60 
-
-    gquiz1.lower_bound(40) : 
-    40 // isme 40 ya 40 se pehla
-    gquiz1.upper_bound(40) : 
-    30 // isme 40 se agla number as in gquiz1 hm dekh skte hain ki 40 se agla 30 hain
-    gquiz2.lower_bound(40) : 
-    40 // sme 40 ya 40 se pehla
-    gquiz2.upper_bound(40) : 
-    60 // isme 40 se agla number as in gquiz2 hm dekh skte hain ki 40 se agla 60 hain
 */
 
 struct dsu{
@@ -294,6 +279,22 @@ void solve_array(){
     cin>>n;
     vl arr(n,0);
     rev(arr,n);
+    multiset<ll> met;
+    rep(i,0,n){
+        if(met.empty()){
+            met.insert(arr[i]);
+        }
+        else{
+            if(met.upper_bound(arr[i])!=met.end()){
+                met.erase(met.find(*met.upper_bound(arr[i])));
+                met.insert(arr[i]);
+            }
+            else{
+                met.insert(arr[i]);
+            }
+        }
+    }
+    cout<<met.size()<<nn;
 }
 
 void solve_graph(){
@@ -312,8 +313,8 @@ void solve_graph(){
 signed main(){
     make_it_fast();
     //seive();
-    solve_mul();
-    //solve_array();
+    //solve_mul();
+    solve_array();
     //solve_single();
     //solve_graph();
     return 0;
