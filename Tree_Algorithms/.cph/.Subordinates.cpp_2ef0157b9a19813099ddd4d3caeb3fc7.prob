@@ -1,0 +1,1 @@
+{"name":"Local: Subordinates","url":"/Users/vidurgoel/CSES_Problemset/Tree_Algorithms/Subordinates.cpp","tests":[{"id":1680757860497,"input":"5\n1 1 2 3","output":"4 1 1 0 0"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/vidurgoel/CSES_Problemset/Tree_Algorithms/Subordinates.cpp","group":"local","local":true}
