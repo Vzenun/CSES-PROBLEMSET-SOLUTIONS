@@ -36,7 +36,9 @@
   "files.associations": {
     "*.ejs": "html",
     "iostream": "cpp",
-    "set": "cpp"
+    "set": "cpp",
+    "queue": "cpp",
+    "random": "cpp"
   },
   "C_Cpp_Runner.useAddressSanitizer": false,
   "cph.general.onceMaintainerMessage": false
