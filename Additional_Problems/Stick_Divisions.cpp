@@ -249,15 +249,24 @@ void solve_mul(){
 
 void solve(){
     string s;
-    ll n;
-    cin>>n;
-    vl arr(n-1,0);
-    rev(arr,n-1);
-    ll sum=0;
-    rep(i,0,n-1){
-        sum+=arr[i];
+    ll len,n;
+    cin>>len>>n;
+    ll num;
+    multiset<ll> st;
+    rep(i,0,n){
+        cin>>num;
+        st.insert(num);
     }
-    cout<<(n*(n+1))/2-sum<<nn;
+    ll answer=0;
+    while(st.size()!=1){
+        ll a1=*st.begin();
+        st.erase(st.begin());
+        ll a2=*st.begin();
+        st.erase(st.begin());
+        st.insert(a1+a2);
+        answer+=a1+a2;
+    }
+    cout<<answer<<nn;
 }
 
 void solvg(){

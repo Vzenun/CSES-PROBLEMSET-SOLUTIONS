@@ -38,5 +38,6 @@
     "iostream": "cpp",
     "set": "cpp"
   },
-  "C_Cpp_Runner.useAddressSanitizer": false
+  "C_Cpp_Runner.useAddressSanitizer": false,
+  "cph.general.onceMaintainerMessage": false
 }

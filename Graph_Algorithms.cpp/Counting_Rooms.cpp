@@ -84,7 +84,42 @@ struct dsu{
     }
 };
 
+void dfs(ll i,ll j,ll n,ll m,vvl & arr){
+    if(i<0 || j<0 || i>n-1 || j>m-1){
+        return;
+    }
+    else{
+        if(arr[i][j]==1){
+            arr[i][j]=0;
+            dfs(i+1,j,n,m,arr);
+            dfs(i,j+1,n,m,arr);
+            dfs(i-1,j,n,m,arr);
+            dfs(i,j-1,n,m,arr);
+        }
+    }
+}
+
 signed main(){
     make_it_fast();
+    ll n,m;
+    cin>>n>>m;
+    vvl arr(n,vl(m));
+    char a;
+    rep(i,0,n){
+        rep(j,0,m){
+            cin>>a;
+            arr[i][j]=(a=='.');
+        }
+    }
+    ll count=0;
+    rep(i,0,n){
+        rep(j,0,m){
+            if(arr[i][j]==1){
+                dfs(i,j,n,m,arr);
+                count++;
+            }
+        }
+    }
+    cout<<count<<endl;
     return 0;
 }

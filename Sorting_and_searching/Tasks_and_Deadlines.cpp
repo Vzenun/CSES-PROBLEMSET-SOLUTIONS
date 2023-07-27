@@ -2,6 +2,7 @@
 
 //Codeforcees Handle: Vidurcodviz
 #include<bits/stdc++.h>
+
 using namespace std;
 using namespace chrono;
 
@@ -243,7 +244,7 @@ void solve_mul(){
     ll test;
     cin>>test;
     rep(i,0,test){
-        
+        solve();
     }
 }
 
@@ -251,13 +252,18 @@ void solve(){
     string s;
     ll n;
     cin>>n;
-    vl arr(n-1,0);
-    rev(arr,n-1);
-    ll sum=0;
-    rep(i,0,n-1){
-        sum+=arr[i];
+    vpll arr(n);
+    rep(i,0,n){
+        cin>>arr[i].ff>>arr[i].ss;
     }
-    cout<<(n*(n+1))/2-sum<<nn;
+    sor(arr);
+    ll sum=0;
+    ll a1=0;
+    rep(i,0,n){
+        sum+=arr[i].ss-arr[i].ff-a1;
+        a1+=arr[i].ff;
+    }
+    cout<<sum<<nn;
 }
 
 void solvg(){
